@@ -16,63 +16,63 @@ uv sync
 
 ## 1. 🇧🇪 Belgium (벨기에)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/belgium \
-    --output-dir belgium_odds_output \
+    --output-dir ./data/belgium_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
 ## 2. 🇩🇰 Denmark (덴마크)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/denmark \
-    --output-dir denmark_odds_output \
+    --output-dir ./data/denmark_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
 ## 3. 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England (잉글랜드)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/england \
-    --output-dir england_odds_output \
+    --output-dir ./data/england_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
 ## 4. 🇫🇷 France (프랑스)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/france \
-    --output-dir france_odds_output \
+    --output-dir ./data/france_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
 ## 5. 🇩🇪 Germany (독일)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/germany \
-    --output-dir germany_odds_output \
+    --output-dir ./data/germany_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
 ## 6. 🇮🇹 Italy (이탈리아)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/italy \
-    --output-dir italy_odds_output \
+    --output-dir ./data/italy_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
 ## 7. 🇳🇱 Netherlands (네덜란드)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/netherlands \
-    --output-dir netherlands_odds_output \
+    --output-dir ./data/netherlands_odds_output \
     --workers 4 \
     --handicaps "+2.5,+3,+3.5"
 ```
@@ -81,34 +81,34 @@ python -m getodd_module \
 ```bash
 xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/norway \
-    --output-dir norway_odds_output \
+    --output-dir ./data/norway_odds_output \
     --workers 4 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
 ## 9. 🇵🇹 Portugal (포르투갈)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/portugal \
-    --output-dir portugal_odds_output \
+    --output-dir ./data/portugal_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
 ## 10. 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland (스코틀랜드)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/scotland \
-    --output-dir scotland_odds_output \
+    --output-dir ./data/scotland_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
 ## 11. 🇪🇸 Spain (스페인)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/spain \
-    --output-dir spain_odds_output \
+    --output-dir ./data/spain_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5"
 ```
@@ -120,16 +120,16 @@ python -m getodd_module \
 ```bash
 xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/sweden \
-    --output-dir sweden_odds_output \
+    --output-dir ./data/sweden_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
 ## 13. 🇨🇭 Switzerland (스위스)
 ```bash
-xvfb-run -a python3 -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/switzerland \
-    --output-dir switzerland_odds_output \
+    --output-dir ./data/switzerland_odds_output \
     --workers 3 \
     --handicaps "+2.5,+3,+3.5"
 ```
@@ -148,9 +148,9 @@ countries=("belgium" "denmark" "england" "france" "germany" "italy"
 
 for country in "${countries[@]}"; do
     echo "Processing $country..."
-    python -m getodd_module \
+    xvfb-run -a python -m getodd_module \
         --input-dir match_urls_complete/by_league/$country \
-        --output-dir ${country}_odds_output \
+        --output-dir ./data/${country}_odds_output \
         --workers 5 \
         --handicaps "+2.5,+3,+3.5"
     echo "$country completed!"
@@ -175,9 +175,9 @@ for country in countries:
     print(f"{'='*50}")
     
     cmd = [
-        "python", "-m", "getodd_module",
+        "xvfb-run", "-a", "python", "-m", "getodd_module",
         "--input-dir", f"match_urls_complete/by_league/{country}",
-        "--output-dir", f"{country}_odds_output",
+        "--output-dir", f"./data/{country}_odds_output",
         "--workers", "5",
         "--handicaps", "+2.5,+3,+3.5"
     ]
@@ -231,15 +231,16 @@ print("\n🎉 All countries processed!")
 각 국가별로 다음과 같은 구조로 저장됩니다:
 
 ```
-{country}_odds_output/
-├── 2020-2021_odds.csv
-├── 2021-2022_odds.csv
-├── 2022-2023_odds.csv
-├── 2023-2024_odds.csv
-├── 2024-2025_odds.csv
-├── checkpoint.json
-├── processing_log.txt
-└── failed_urls.json (실패한 URL이 있을 경우)
+data/
+└── {country}_odds_output/
+    ├── 2020-2021_odds.csv
+    ├── 2021-2022_odds.csv
+    ├── 2022-2023_odds.csv
+    ├── 2023-2024_odds.csv
+    ├── 2024-2025_odds.csv
+    ├── checkpoint.json
+    ├── processing_log.txt
+    └── failed_urls.json (실패한 URL이 있을 경우)
 ```
 
 ---
@@ -265,9 +266,9 @@ sudo apt install -y google-chrome-stable
 ### 재개하기
 ```bash
 # 중단된 작업 재개
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/{country} \
-    --output-dir {country}_odds_output \
+    --output-dir ./data/{country}_odds_output \
     --workers 5 \
     --handicaps "+2.5,+3,+3.5" \
     --resume
