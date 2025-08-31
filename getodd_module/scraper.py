@@ -8,18 +8,40 @@ from typing import List
 import pytz
 import os
 import shutil
+import subprocess
+import platform
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, WebDriverException
 
 from .config import (
     BROWSER_USER_AGENT, BROWSER_TIMEOUT, WAIT_DELAY, SCROLL_PAUSE, EXPAND_PAUSE,
     KOREA_TZ, UTC_FORMAT, DATE_PARSE_FORMAT, XPATH_SELECTORS
 )
 from .parser import parse_url_for_info
+
+
+def cleanup_chromedriver_processes():
+    """Kill any stuck chromedriver processes"""
+    if platform.system() == "Darwin":  # macOS
+        try:
+            # Kill chromedriver processes
+            subprocess.run(["pkill", "-f", "chromedriver"], capture_output=True, timeout=5)
+            # Kill headless Chrome processes
+            subprocess.run(["pkill", "-f", "Chrome.*--headless"], capture_output=True, timeout=5)
+            time.sleep(1)
+        except:
+            pass
+    elif platform.system() == "Linux":
+        try:
+            subprocess.run(["pkill", "-f", "chromedriver"], capture_output=True, timeout=5)
+            subprocess.run(["pkill", "-f", "chrome.*--headless"], capture_output=True, timeout=5)
+            time.sleep(1)
+        except:
+            pass
 
 
 def create_driver(headless: bool = True) -> webdriver.Chrome:
@@ -34,7 +56,7 @@ def create_driver(headless: bool = True) -> webdriver.Chrome:
     """
     options = webdriver.ChromeOptions()
     if headless:
-        options.add_argument("--headless")
+        options.add_argument("--headless=new")  # Use new headless mode
     
     # 서버 환경을 위한 필수 옵션들
     options.add_argument("--no-sandbox")
@@ -43,28 +65,53 @@ def create_driver(headless: bool = True) -> webdriver.Chrome:
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument("--disable-extensions")
     options.add_argument("--disable-setuid-sandbox")
-    options.add_argument("--disable-web-security")
     options.add_argument("--disable-features=VizDisplayCompositor")
     options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
     options.add_argument(f"user-agent={BROWSER_USER_AGENT}")
     
-    # 메모리 최적화
-    options.add_argument("--memory-pressure-off")
-    options.add_argument("--single-process")
+    # GCP 환경을 위한 추가 옵션
+    if platform.system() == "Linux":
+        options.add_argument("--disable-features=NetworkService")
+        options.add_argument("--disable-features=VizDisplayCompositor")
+        options.add_argument("--no-zygote")  # GCP에서 도움이 될 수 있음
+    
+    # Remove problematic options for macOS
+    # options.add_argument("--memory-pressure-off")  # Can cause issues on macOS
+    # options.add_argument("--single-process")  # Problematic with newer Chrome
     options.add_argument("--disable-background-timer-throttling")
     options.add_argument("--disable-renderer-backgrounding")
     options.add_argument("--disable-features=TranslateUI")
     options.add_argument("--disable-ipc-flooding-protection")
     
+    # Add stability options for macOS
+    options.add_argument("--disable-software-rasterizer")
+    options.add_argument("--disable-background-networking")
+    options.add_argument("--safebrowsing-disable-auto-update")
+    options.add_argument("--disable-sync")
+    options.add_argument("--metrics-recording-only")
+    options.add_argument("--disable-default-apps")
+    options.add_argument("--no-first-run")
+    options.add_argument("--disable-backgrounding-occluded-windows")
+    options.add_argument("--disable-renderer-backgrounding")
+    options.add_argument("--disable-features=TranslateUI,BlinkGenPropertyTrees")
+    options.add_argument("--force-color-profile=srgb")
+    
     # 추가 안정성 옵션
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option("excludeSwitches", ["enable-automation", "enable-logging"])
     options.add_experimental_option('useAutomationExtension', False)
     options.add_experimental_option("prefs", {
         "profile.default_content_setting_values.notifications": 2,
         "profile.default_content_settings.popups": 0,
-        "profile.managed_default_content_settings.images": 2  # 이미지 로딩 비활성화 (속도 향상)
+        "profile.managed_default_content_settings.images": 1,  # Enable images (2 can cause issues)
+        "download.default_directory": "/tmp",
+        "download.prompt_for_download": False,
+        "download.directory_upgrade": True,
+        "safebrowsing.enabled": False
     })
+    
+    # macOS specific stability settings
+    options.add_experimental_option('w3c', True)
+    options.add_experimental_option('detach', False)
     
     # Chromium/Chrome 드라이버 자동 감지
     chrome_driver_path = None
@@ -90,8 +137,38 @@ def create_driver(headless: bool = True) -> webdriver.Chrome:
         except Exception:
             raise Exception("ChromeDriver not found. Please install chromium-chromedriver or google-chrome-stable")
     
-    driver = webdriver.Chrome(service=service, options=options)
-    return driver
+    # Create driver with error handling
+    max_attempts = 3
+    for attempt in range(max_attempts):
+        try:
+            driver = webdriver.Chrome(service=service, options=options)
+            # Set page load strategy and timeouts
+            driver.set_page_load_timeout(30)
+            driver.implicitly_wait(10)
+            return driver
+        except Exception as e:
+            if attempt < max_attempts - 1:
+                time.sleep(2)  # Wait before retry
+                continue
+            raise e
+
+
+def is_driver_alive(driver: webdriver.Chrome) -> bool:
+    """
+    Check if the driver is still alive and responsive
+    
+    Args:
+        driver: WebDriver instance
+        
+    Returns:
+        True if driver is alive, False otherwise
+    """
+    try:
+        # Try to get current URL - simple check that doesn't change state
+        _ = driver.current_url
+        return True
+    except:
+        return False
 
 
 def scrape_match_and_odds_with_driver(driver: webdriver.Chrome, base_url: str, 
@@ -108,6 +185,10 @@ def scrape_match_and_odds_with_driver(driver: webdriver.Chrome, base_url: str,
         수집된 배당률 데이터 리스트
     """
     all_odds_data = []
+    
+    # Check if driver is still alive before proceeding
+    if not is_driver_alive(driver):
+        raise WebDriverException("Driver connection lost - needs restart")
     
     league_name, season_info = parse_url_for_info(base_url)
     target_url = base_url.rstrip('/') + "/#over-under;2"

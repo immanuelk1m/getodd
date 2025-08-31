@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
 
 from .config import CSV_COLUMNS, CSV_ENCODING, WAIT_DELAY
-from .scraper import create_driver, scrape_match_and_odds_with_driver, scrape_match_and_odds
+from .scraper import create_driver, scrape_match_and_odds_with_driver, scrape_match_and_odds, cleanup_chromedriver_processes, is_driver_alive
 
 
 def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str], 
@@ -32,6 +32,11 @@ def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str
     failed_urls = []
     driver = None
     
+    # Clean up before starting (only for first worker)
+    if worker_id == 0:
+        cleanup_chromedriver_processes()
+        time.sleep(1)
+    
     try:
         driver = create_driver(headless)
         logger.info(f"Worker {worker_id}: Processing {len(urls_batch)} URLs")
@@ -46,6 +51,10 @@ def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str
                     logger.info(f"  Worker {worker_id} [{idx+1}/{len(urls_batch)}]: {url}")
                     if retry_count > 0:
                         logger.info(f"    Retry attempt {retry_count}/{max_retries}")
+                    
+                    # Check driver health before scraping
+                    if not is_driver_alive(driver):
+                        raise Exception("Driver connection lost - needs restart")
                     
                     result = scrape_match_and_odds_with_driver(driver, url, handicaps)
                     results.extend(result)
@@ -66,7 +75,14 @@ def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str
                         "disconnected" in error_msg.lower(),
                         "Message: \n" in error_msg,  # Empty message with stacktrace
                         "Message: unknown error" in error_msg.lower(),
-                        "chromedriver" in error_msg.lower()
+                        "chromedriver" in error_msg.lower(),
+                        "can not connect to the service" in error_msg.lower(),
+                        "unexpectedly exited" in error_msg.lower(),
+                        "status code was: -9" in error_msg.lower(),
+                        "HTTPConnectionPool" in error_msg,  # Connection pool errors
+                        "Max retries exceeded" in error_msg,  # Connection timeout
+                        "localhost" in error_msg and "session" in error_msg,  # Session connection lost
+                        "Driver connection lost" in error_msg  # Our custom check
                     ])
                     
                     if retry_count < max_retries:
@@ -79,21 +95,42 @@ def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str
                         logger.info(f"      Waiting {wait_time} seconds before retry...")
                         time.sleep(wait_time)
                         
-                        # Restart browser for critical errors
-                        if critical_error:
+                        # Restart browser for critical errors (or every 2nd retry)
+                        if critical_error or retry_count == 2:
                             try:
-                                logger.info(f"    Worker {worker_id}: Restarting browser due to critical error...")
-                                driver.quit()
-                                time.sleep(2)  # Wait before creating new instance
+                                logger.info(f"    Worker {worker_id}: Restarting browser...")
+                                try:
+                                    driver.quit()
+                                except:
+                                    pass  # Ignore errors during quit
+                                
+                                driver = None  # Clear reference
+                                
+                                # Clean up any stuck processes
+                                cleanup_chromedriver_processes()
+                                time.sleep(2)
+                                
+                                # Create new driver
                                 driver = create_driver(headless)
                                 logger.info(f"    Worker {worker_id}: Browser restarted successfully")
                             except Exception as restart_error:
                                 logger.error(f"    Worker {worker_id}: Failed to restart browser: {restart_error}")
-                                # Try to continue anyway with a new driver
+                                # Wait longer and try one more time
+                                cleanup_chromedriver_processes()
+                                time.sleep(5)
                                 try:
                                     driver = create_driver(headless)
-                                except:
-                                    pass
+                                    logger.info(f"    Worker {worker_id}: Browser recovered after extended wait")
+                                except Exception as final_error:
+                                    logger.error(f"    Worker {worker_id}: Final recovery attempt failed: {final_error}")
+                                    # Don't raise, continue with failed URLs
+                                    failed_urls.append({
+                                        'url': url, 
+                                        'error': f"Browser restart failed: {final_error}", 
+                                        'worker_id': worker_id,
+                                        'attempts': retry_count
+                                    })
+                                    break  # Exit retry loop for this URL
                     else:
                         logger.error(f"    ✗ Worker {worker_id}: Failed after {max_retries} attempts")
                         logger.error(f"      Final error: {error_msg[:300]}")
@@ -105,8 +142,11 @@ def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str
                         })
     finally:
         if driver:
-            driver.quit()
-            logger.info(f"Worker {worker_id}: Browser closed")
+            try:
+                driver.quit()
+                logger.info(f"Worker {worker_id}: Browser closed")
+            except:
+                logger.warning(f"Worker {worker_id}: Browser quit failed, may have already crashed")
     
     return results, failed_urls
 
@@ -165,7 +205,9 @@ def process_csv_file(csv_file: Path, handicaps: List[str], output_dir: Path,
                             "chrome not reachable" in error_msg.lower(),
                             "session not created" in error_msg.lower(),
                             "Message: \n" in error_msg,
-                            "chromedriver" in error_msg.lower()
+                            "chromedriver" in error_msg.lower(),
+                            "can not connect to the service" in error_msg.lower(),
+                            "unexpectedly exited" in error_msg.lower()
                         ])
                         
                         if retry_count < max_retries:
