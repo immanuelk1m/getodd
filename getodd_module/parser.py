@@ -45,7 +45,7 @@ def parse_url_for_info(url: str) -> Tuple[str, str]:
         
         # 정규표현식 패턴: (리그이름)-(YYYY-YYYY 또는 YYYY)
         # 예: jupiler-league-2020-2021 또는 allsvenskan-2020
-        pattern = re.compile(r'^(.+?)-(\\d{4}(?:-\\d{4})?)$')
+        pattern = re.compile(r'^(.+?)-(\d{4}(?:-\d{4})?)$')
         match = pattern.match(league_season_slug)
         
         if match:

@@ -27,18 +27,45 @@ def parse_url_for_info(url):
     """
     try:
         clean_url = url.split('/#')[0].strip('/')
-        url_parts = clean_url.split('/')
-        league_season_slug = url_parts[-2]
+        parts = clean_url.split('/')
         
-        # 정규표현식 패턴: (리그이름)-(시즌) 구조를 찾음
-        pattern = re.compile(r"^(.*?)-(\d{4}-\d{4}|\d{4})$")
+        # URL 구조: .../football/country/league-season/match-teams/
+        # football 다음의 league-season 부분 찾기
+        league_season_slug = None
+        
+        if 'football' in parts:
+            football_idx = parts.index('football')
+            # football 다음 다음이 league-season (country 건너뛰기)
+            if len(parts) > football_idx + 2:
+                league_season_slug = parts[football_idx + 2]
+        
+        if not league_season_slug:
+            # fallback: 끝에서 두 번째 (기존 로직)
+            if len(parts) >= 2:
+                # URL이 /로 끝나면 -2, 아니면 -1이 match 부분
+                if parts[-1]:  # URL이 /로 끝나지 않음
+                    league_season_slug = parts[-2]
+                else:  # URL이 /로 끝남
+                    league_season_slug = parts[-3] if len(parts) >= 3 else parts[-2]
+            else:
+                return 'N/A', 'N/A'
+        
+        # 정규표현식 패턴: (리그이름)-(YYYY-YYYY 또는 YYYY)
+        pattern = re.compile(r'^(.+?)-(\d{4}(?:-\d{4})?)$')
         match = pattern.match(league_season_slug)
         
         if match:
             # 그룹 1: 리그 이름 슬러그, 그룹 2: 시즌 정보
             league_name_slug = match.group(1)
             season_info = match.group(2)
-            league_name = league_name_slug.replace('-', ' ').title() # 하이픈을 공백으로 바꾸고 첫 글자 대문자로
+            league_name = league_name_slug.replace('-', ' ').title()
+            
+            # 시즌 정보 정규화: YYYY -> YYYY-YYYY+1
+            if '-' not in season_info and len(season_info) == 4:
+                year = int(season_info)
+                season_info = f'{year}-{year + 1}'
+            # 이미 YYYY-YYYY 형식이면 그대로 유지
+            
         else:
             # 패턴에 맞지 않으면 시즌 정보 없이 전체를 리그 이름으로 처리
             season_info = 'N/A'
