@@ -541,39 +541,6 @@ def main():
         checkpoint_data['processed_files'].append(str(csv_file))
         checkpoint_data['failed_urls'] = all_failed_urls
         save_checkpoint(checkpoint_file, checkpoint_data)
-        
-        # 배치 저장 (메모리 관리)
-        if idx % args.batch_size == 0 and all_combined_results:
-            combined_file = output_dir / 'combined_odds_partial.csv'
-            columns = ['match_date', 'home_team', 'away_team', 'league_name', 'season_info', 
-                      'bookmaker', 'odd_type', 'odd_value', 'match_url']
-            df_combined = pd.DataFrame(all_combined_results, columns=columns)
-            
-            if combined_file.exists():
-                df_existing = pd.read_csv(combined_file)
-                df_combined = pd.concat([df_existing, df_combined], ignore_index=True)
-            
-            df_combined.to_csv(combined_file, index=False, encoding='utf-8-sig')
-            logger.info(f"  Batch saved: {len(all_combined_results)} new entries")
-            all_combined_results = []  # 메모리 클리어
-    
-    # 최종 결합 파일 저장
-    if all_combined_results:
-        combined_file = output_dir / 'combined_odds.csv'
-        columns = ['match_date', 'home_team', 'away_team', 'league_name', 'season_info', 
-                  'bookmaker', 'odd_type', 'odd_value', 'match_url']
-        df_final = pd.DataFrame(all_combined_results, columns=columns)
-        
-        # 부분 파일이 있으면 병합
-        partial_file = output_dir / 'combined_odds_partial.csv'
-        if partial_file.exists():
-            df_partial = pd.read_csv(partial_file)
-            df_final = pd.concat([df_partial, df_final], ignore_index=True)
-            partial_file.unlink()  # 부분 파일 삭제
-        
-        df_final.to_csv(combined_file, index=False, encoding='utf-8-sig')
-        logger.info(f"\nFinal combined file saved: {combined_file}")
-        logger.info(f"Total entries: {len(df_final)}")
     
     # 실패한 URL 저장
     if all_failed_urls:
