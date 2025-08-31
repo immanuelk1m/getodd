@@ -1,0 +1,488 @@
+[
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/fc-emmen-almere-city-zJYnE35E/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1188267a0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/twente-sparta-rotterdam-EBKsnokf/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c3dbf0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/sparta-rotterdam-twente-zLLwmRZm/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c3f8a0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/almere-city-fc-emmen-OrVrFqj8/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1188269c0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/sparta-rotterdam-utrecht-Y9x2Jrap/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7d150>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/twente-heerenveen-jyQQH5ps/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7ee00>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/fc-emmen-nac-breda-SEnv4e6h/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca0af0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/almere-city-venlo-KffNiLPk/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca0d10>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/utrecht-sparta-rotterdam-tEEYzBUH/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca2470>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/heerenveen-twente-YewaMoxQ/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7fce0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/nac-breda-fc-emmen-Yimz5yin/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca3f00>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/venlo-almere-city-6ijJh1Aq/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca2360>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/az-alkmaar-psv-ITGeSMDl/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118827240>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/cambuur-waalwijk-0h60RtTf/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7f570>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/fc-volendam-excelsior-IsdUtMSs/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118827240>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/feyenoord-vitesse-EeA4Q0r1/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca2360>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/groningen-sparta-rotterdam-n98COvDD/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca3ce0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/heerenveen-g-a-eagles-OQiemOkE/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7df20>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/sittard-nijmegen-8I98PKc7/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca2250>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/twente-ajax-2Hjanr5K/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca1480>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/utrecht-fc-emmen-dvj3o2KQ/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7f8a0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/maastricht-nac-breda-fXr6of1j/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1188279b0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/willem-ii-venlo-SISP5On5/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca1e10>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/almere-city-eindhoven-fc-OpMY32HH/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca3ac0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/nac-breda-maastricht-0Aq2nznp/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7d260>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/venlo-willem-ii-YeTL64Xb/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca28b0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eerste-divisie-2022-2023/eindhoven-fc-almere-city-69RT4r2B/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca09e0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/ajax-utrecht-nsYhVkUS/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7f020>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/excelsior-sittard-6REPPTij/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118827350>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/fc-emmen-feyenoord-ljKKQ9xp/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca18c0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/g-a-eagles-fc-volendam-pIDTOm7d/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca3570>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/nijmegen-az-alkmaar-bL1BmXqc/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7c490>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/psv-heerenveen-CO5Fnia3/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca2690>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/sparta-rotterdam-cambuur-YwfOpVTF/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca0c00>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/vitesse-groningen-vwIiT2br/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7d150>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/waalwijk-twente-fmeKoBE9/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118827ac0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/groningen-ajax-ddesDj8p/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7d150>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/az-alkmaar-fc-emmen-vH8FHWaT/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca16a0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/psv-sittard-bLutYipA/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca3350>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/feyenoord-g-a-eagles-KUtxZXU3/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca2ad0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/vitesse-cambuur-hKYlWVEM/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118ca07c0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/utrecht-waalwijk-C4wUzf0i/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c7fac0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/heerenveen-excelsior-tpVpXBaG/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118827ce0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/fc-volendam-sparta-rotterdam-jexYZDFc/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d29150>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/twente-nijmegen-AaaoCANj/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2ae00>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/sittard-vitesse-4OobNzWi/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f0af0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/excelsior-feyenoord-xIgCaXwo/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1188269c0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/g-a-eagles-groningen-nmy3Mfob/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2a470>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/fc-emmen-twente-QXnfOGGo/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d289e0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/ajax-az-alkmaar-z97p4DVT/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f0050>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/cambuur-utrecht-Y3wFJhVG/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d29bf0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/nijmegen-heerenveen-0ju7LE04/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2b8a0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/sparta-rotterdam-psv-0Q9BICpN/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f0380>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/waalwijk-fc-volendam-fDvBKYFA/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118827680>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/groningen-nijmegen-44JCBwXu/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2aad0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/az-alkmaar-waalwijk-vsh6jf1U/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d28160>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/feyenoord-utrecht-jLLO8yHb/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f0050>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/g-a-eagles-sittard-8dGT7eW4/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d29480>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/psv-ajax-nmFX6FoB/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2b130>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/twente-sparta-rotterdam-I7NGAcnn/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f1d00>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/vitesse-excelsior-hpIu5gGN/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1188278a0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/heerenveen-fc-emmen-tAEy6Z0H/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2b240>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/fc-volendam-cambuur-CUMK9H1h/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d29590>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/g-a-eagles-waalwijk-EaOMVt2j/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f07c0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/ajax-fc-emmen-jgo5FnYD/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d297b0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/sittard-az-alkmaar-I71oeIna/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2b460>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/cambuur-feyenoord-hQgbhGWH/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118827df0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/fc-volendam-psv-Op2sdbXh/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f3350>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/utrecht-twente-pf3wcvIn/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2b350>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/nijmegen-vitesse-WA5kfx25/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d296a0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/sparta-rotterdam-heerenveen-0jg2iznO/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f05a0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/waalwijk-groningen-EZffgdHB/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f1ae0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/excelsior-g-a-eagles-SI8YcK2t/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d297b0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/feyenoord-waalwijk-IkjBg5Bf/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2b460>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/ajax-sittard-dI6S1T3E/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118c70050>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/fc-emmen-nijmegen-4rAz07YQ/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2b570>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/twente-cambuur-lGo7fodl/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d298c0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/heerenveen-fc-volendam-v5vKiqt7/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f0270>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/az-alkmaar-sparta-rotterdam-ju6W0mJK/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11d1f2f10>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/psv-excelsior-dtkFhPQ0/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d28490>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  },
+  {
+    "url": "https://www.oddsportal.com/football/netherlands/eredivisie-2022-2023/vitesse-g-a-eagles-xjcNj3eD/",
+    "error": "HTTPConnectionPool(host='localhost', port=55945): Max retries exceeded with url: /session/d135aace14f3e6b15c4c1341ca547769/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x118d2abe0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+    "worker_id": 0,
+    "attempts": 3
+  }
+]

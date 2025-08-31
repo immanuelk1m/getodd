@@ -79,10 +79,10 @@ python -m getodd_module \
 
 ## 8. 🇳🇴 Norway (노르웨이)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/norway \
     --output-dir norway_odds_output \
-    --workers 5 \
+    --workers 4 \
     --handicaps "+2.5,+3,+3.5"
 ```
 
