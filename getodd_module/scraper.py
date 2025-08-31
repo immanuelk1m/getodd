@@ -35,11 +35,36 @@ def create_driver(headless: bool = True) -> webdriver.Chrome:
     options = webdriver.ChromeOptions()
     if headless:
         options.add_argument("--headless")
-    options.add_argument("--start-maximized")
-    options.add_argument(f"user-agent={BROWSER_USER_AGENT}")
+    
+    # 서버 환경을 위한 필수 옵션들
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-setuid-sandbox")
+    options.add_argument("--disable-web-security")
+    options.add_argument("--disable-features=VizDisplayCompositor")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--start-maximized")
+    options.add_argument(f"user-agent={BROWSER_USER_AGENT}")
+    
+    # 메모리 최적화
+    options.add_argument("--memory-pressure-off")
+    options.add_argument("--single-process")
+    options.add_argument("--disable-background-timer-throttling")
+    options.add_argument("--disable-renderer-backgrounding")
+    options.add_argument("--disable-features=TranslateUI")
+    options.add_argument("--disable-ipc-flooding-protection")
+    
+    # 추가 안정성 옵션
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+    options.add_experimental_option("prefs", {
+        "profile.default_content_setting_values.notifications": 2,
+        "profile.default_content_settings.popups": 0,
+        "profile.managed_default_content_settings.images": 2  # 이미지 로딩 비활성화 (속도 향상)
+    })
     
     # Chromium/Chrome 드라이버 자동 감지
     chrome_driver_path = None

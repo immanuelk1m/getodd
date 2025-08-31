@@ -37,15 +37,41 @@ def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str
         logger.info(f"Worker {worker_id}: Processing {len(urls_batch)} URLs")
         
         for idx, url in enumerate(urls_batch):
-            try:
-                logger.info(f"  Worker {worker_id} [{idx+1}/{len(urls_batch)}]: {url}")
-                result = scrape_match_and_odds_with_driver(driver, url, handicaps)
-                results.extend(result)
-                logger.info(f"    ✓ Worker {worker_id}: Collected {len(result)} entries")
-                time.sleep(WAIT_DELAY)  # Small delay between requests
-            except Exception as e:
-                logger.error(f"    ✗ Worker {worker_id}: Failed - {str(e)}")
-                failed_urls.append({'url': url, 'error': str(e), 'worker_id': worker_id})
+            retry_count = 0
+            max_retries = 3
+            success = False
+            
+            while retry_count < max_retries and not success:
+                try:
+                    logger.info(f"  Worker {worker_id} [{idx+1}/{len(urls_batch)}]: {url}")
+                    if retry_count > 0:
+                        logger.info(f"    Retry attempt {retry_count}/{max_retries}")
+                    
+                    result = scrape_match_and_odds_with_driver(driver, url, handicaps)
+                    results.extend(result)
+                    logger.info(f"    ✓ Worker {worker_id}: Collected {len(result)} entries")
+                    success = True
+                    time.sleep(WAIT_DELAY)  # Small delay between requests
+                    
+                except Exception as e:
+                    retry_count += 1
+                    error_msg = str(e)
+                    
+                    if retry_count < max_retries:
+                        logger.warning(f"    ⚠ Worker {worker_id}: Attempt {retry_count} failed - {error_msg[:100]}")
+                        time.sleep(2 * retry_count)  # Exponential backoff
+                        
+                        # 드라이버 재시작 (심각한 오류의 경우)
+                        if "Stacktrace" in error_msg or "chrome not reachable" in error_msg.lower():
+                            try:
+                                driver.quit()
+                                logger.info(f"    Worker {worker_id}: Restarting browser...")
+                                driver = create_driver(headless)
+                            except:
+                                pass
+                    else:
+                        logger.error(f"    ✗ Worker {worker_id}: Failed after {max_retries} attempts")
+                        failed_urls.append({'url': url, 'error': error_msg[:200], 'worker_id': worker_id})
     finally:
         if driver:
             driver.quit()
