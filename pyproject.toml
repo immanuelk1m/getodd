@@ -2,7 +2,7 @@
 name = "getodd"
 version = "1.0.0"
 description = "Odds data scraper with parallel processing support"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
     "selenium>=4.15.0",
     "webdriver-manager>=4.0.0",
@@ -16,10 +16,3 @@ getodd = "getodd_module.main:main"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-[tool.uv]
-dev-dependencies = [
-    "pytest>=7.4.0",
-    "black>=23.0.0",
-    "flake8>=6.0.0",
-]
