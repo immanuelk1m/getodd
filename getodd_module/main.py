@@ -100,8 +100,7 @@ def main():
         csv_files = [f for f in csv_files if str(f) not in processed_set]
         logger.info(f"Resuming: {len(processed_set)} files already processed, {len(csv_files)} remaining")
     
-    # 전체 결과 저장용
-    all_combined_results = []
+    # 실패한 URL 저장용
     all_failed_urls = checkpoint_data.get('failed_urls', [])
     
     # 각 CSV 파일 처리
@@ -117,8 +116,6 @@ def main():
         
         # 결과 저장
         if results:
-            all_combined_results.extend(results)
-            
             # 리그별 저장 디렉토리 생성
             try:
                 relative_path = csv_file.relative_to(input_dir)
@@ -140,40 +137,6 @@ def main():
         checkpoint_data['processed_files'].append(str(csv_file))
         checkpoint_data['failed_urls'] = all_failed_urls
         save_checkpoint(checkpoint_file, checkpoint_data)
-        
-        # 배치 저장 (메모리 관리)
-        if idx % args.batch_size == 0 and all_combined_results:
-            combined_file = output_dir / COMBINED_ODDS_PARTIAL_FILE
-            df_combined = pd.DataFrame(all_combined_results, columns=CSV_COLUMNS)
-            
-            if combined_file.exists():
-                df_existing = pd.read_csv(combined_file)
-                df_combined = pd.concat([df_existing, df_combined], ignore_index=True)
-            
-            df_combined.to_csv(combined_file, index=False, encoding=CSV_ENCODING)
-            logger.info(f"  Batch saved: {len(all_combined_results)} new entries")
-            all_combined_results = []  # 메모리 클리어
-    
-    # 최종 결합 파일 저장
-    if all_combined_results or (output_dir / COMBINED_ODDS_PARTIAL_FILE).exists():
-        combined_file = output_dir / COMBINED_ODDS_FILE
-        
-        if all_combined_results:
-            df_final = pd.DataFrame(all_combined_results, columns=CSV_COLUMNS)
-        else:
-            df_final = pd.DataFrame(columns=CSV_COLUMNS)
-        
-        # 부분 파일이 있으면 병합
-        partial_file = output_dir / COMBINED_ODDS_PARTIAL_FILE
-        if partial_file.exists():
-            df_partial = pd.read_csv(partial_file)
-            df_final = pd.concat([df_partial, df_final], ignore_index=True)
-            partial_file.unlink()  # 부분 파일 삭제
-        
-        if not df_final.empty:
-            df_final.to_csv(combined_file, index=False, encoding=CSV_ENCODING)
-            logger.info(f"\nFinal combined file saved: {combined_file}")
-            logger.info(f"Total entries: {len(df_final)}")
     
     # 실패한 URL 저장
     failed_file = save_failed_urls(output_dir, all_failed_urls)

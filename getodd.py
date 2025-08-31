@@ -500,8 +500,7 @@ def main():
         csv_files = [f for f in csv_files if str(f) not in processed_set]
         logger.info(f"Resuming: {len(processed_set)} files already processed, {len(csv_files)} remaining")
     
-    # 전체 결과 저장용
-    all_combined_results = []
+    # 실패한 URL 저장용
     all_failed_urls = checkpoint_data.get('failed_urls', [])
     
     # 각 CSV 파일 처리
@@ -517,8 +516,6 @@ def main():
         
         # 결과 저장
         if results:
-            all_combined_results.extend(results)
-            
             # 리그별 저장 디렉토리 생성
             try:
                 relative_path = csv_file.relative_to(input_dir)
