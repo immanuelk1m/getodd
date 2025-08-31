@@ -1,0 +1,88 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Project specific
+*.log
+*.json
+checkpoint.json
+failed_urls.json
+
+# Data folders and CSV files
+data/
+*.csv
+
+# Output directories
+*_odds_output/
+odds_data_output/
+match_urls_complete/
+netherlands_odds_output/
+spain_odds_output/
+sweden_odds_output/
+switzerland_odds_output/
+belgium_odds_output/
+denmark_odds_output/
+england_odds_output/
+france_odds_output/
+germany_odds_output/
+italy_odds_output/
+norway_odds_output/
+portugal_odds_output/
+scotland_odds_output/
+
+# WebDriver
+chromedriver
+geckodriver
+*.exe
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Credentials and secrets
+.env.local
+.env.*.local
+config.ini
+secrets.yaml
+credentials.json
