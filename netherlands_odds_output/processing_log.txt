@@ -1,0 +1,19 @@
+2025-08-31 22:13:05,921 - INFO - ==================================================
+2025-08-31 22:13:05,921 - INFO - Odds Scraper Started
+2025-08-31 22:13:05,921 - INFO - Input directory: match_urls_complete/by_league/netherlands
+2025-08-31 22:13:05,921 - INFO - Output directory: netherlands_odds_output
+2025-08-31 22:13:05,922 - INFO - Handicaps: +2.5,+3,+3.5
+2025-08-31 22:13:05,922 - INFO - Workers: 4
+2025-08-31 22:13:05,922 - INFO - ==================================================
+2025-08-31 22:13:05,924 - INFO - Found 5 CSV files
+2025-08-31 22:13:05,924 - INFO - 
+[1/5] Processing: match_urls_complete/by_league/netherlands/2020-2021.csv
+2025-08-31 22:13:05,945 - INFO - Processing 2020-2021.csv: 315 URLs found with 4 workers
+2025-08-31 22:13:09,773 - INFO - Worker 3: Processing 78 URLs
+2025-08-31 22:13:09,773 - INFO -   Worker 3 [1/78]: https://www.oddsportal.com/football/netherlands/eredivisie-2020-2021/waalwijk-heerenveen-pKlI7L1A/
+2025-08-31 22:13:09,785 - INFO - Worker 1: Processing 79 URLs
+2025-08-31 22:13:09,788 - INFO -   Worker 1 [1/79]: https://www.oddsportal.com/football/netherlands/eredivisie-2020-2021/feyenoord-fc-emmen-I5KJ6lz0/
+2025-08-31 22:13:09,850 - INFO - Worker 2: Processing 79 URLs
+2025-08-31 22:13:09,850 - INFO -   Worker 2 [1/79]: https://www.oddsportal.com/football/netherlands/eredivisie-2020-2021/psv-waalwijk-WlfgKhn9/
+2025-08-31 22:13:09,920 - INFO - Worker 0: Processing 79 URLs
+2025-08-31 22:13:09,921 - INFO -   Worker 0 [1/79]: https://www.oddsportal.com/football/netherlands/eredivisie-2020-2021/nac-breda-nijmegen-0l2TMCUh/

@@ -73,7 +73,7 @@ python -m getodd_module \
 python -m getodd_module \
     --input-dir match_urls_complete/by_league/netherlands \
     --output-dir netherlands_odds_output \
-    --workers 5 \
+    --workers 4 \
     --handicaps "+2.5,+3,+3.5"
 ```
 

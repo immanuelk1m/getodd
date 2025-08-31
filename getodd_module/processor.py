@@ -57,21 +57,52 @@ def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str
                     retry_count += 1
                     error_msg = str(e)
                     
+                    # Check for critical errors that need browser restart
+                    critical_error = any([
+                        "Stacktrace" in error_msg,
+                        "chrome not reachable" in error_msg.lower(),
+                        "session not created" in error_msg.lower(),
+                        "target window already closed" in error_msg.lower(),
+                        "disconnected" in error_msg.lower(),
+                        "Message: \n" in error_msg,  # Empty message with stacktrace
+                        "Message: unknown error" in error_msg.lower(),
+                        "chromedriver" in error_msg.lower()
+                    ])
+                    
                     if retry_count < max_retries:
-                        logger.warning(f"    ⚠ Worker {worker_id}: Attempt {retry_count} failed - {error_msg[:100]}")
-                        time.sleep(2 * retry_count)  # Exponential backoff
+                        logger.warning(f"    ⚠ Worker {worker_id}: Attempt {retry_count}/{max_retries} failed")
+                        logger.warning(f"      Error type: {'Critical - Browser restart needed' if critical_error else 'Regular'}")
+                        logger.debug(f"      Error details: {error_msg[:200]}")
                         
-                        # 드라이버 재시작 (심각한 오류의 경우)
-                        if "Stacktrace" in error_msg or "chrome not reachable" in error_msg.lower():
+                        # Exponential backoff
+                        wait_time = 2 ** retry_count
+                        logger.info(f"      Waiting {wait_time} seconds before retry...")
+                        time.sleep(wait_time)
+                        
+                        # Restart browser for critical errors
+                        if critical_error:
                             try:
+                                logger.info(f"    Worker {worker_id}: Restarting browser due to critical error...")
                                 driver.quit()
-                                logger.info(f"    Worker {worker_id}: Restarting browser...")
+                                time.sleep(2)  # Wait before creating new instance
                                 driver = create_driver(headless)
-                            except:
-                                pass
+                                logger.info(f"    Worker {worker_id}: Browser restarted successfully")
+                            except Exception as restart_error:
+                                logger.error(f"    Worker {worker_id}: Failed to restart browser: {restart_error}")
+                                # Try to continue anyway with a new driver
+                                try:
+                                    driver = create_driver(headless)
+                                except:
+                                    pass
                     else:
                         logger.error(f"    ✗ Worker {worker_id}: Failed after {max_retries} attempts")
-                        failed_urls.append({'url': url, 'error': error_msg[:200], 'worker_id': worker_id})
+                        logger.error(f"      Final error: {error_msg[:300]}")
+                        failed_urls.append({
+                            'url': url, 
+                            'error': error_msg[:500], 
+                            'worker_id': worker_id,
+                            'attempts': retry_count
+                        })
     finally:
         if driver:
             driver.quit()
@@ -107,20 +138,54 @@ def process_csv_file(csv_file: Path, handicaps: List[str], output_dir: Path,
         logger.info(f"Processing {csv_file.name}: {total_urls} URLs found with {num_workers} workers")
         
         if num_workers == 1:
-            # Sequential processing (backward compatibility)
+            # Sequential processing with retry logic
             for idx, url in enumerate(urls):
-                logger.info(f"  [{idx+1}/{total_urls}] Processing: {url}")
+                retry_count = 0
+                max_retries = 3
+                success = False
                 
-                try:
-                    results = scrape_match_and_odds(url, handicaps, headless)
-                    all_results.extend(results)
-                    logger.info(f"    ✓ Collected {len(results)} odds entries")
-                except Exception as e:
-                    logger.error(f"    ✗ Failed: {str(e)}")
-                    failed_urls.append({'url': url, 'error': str(e), 'csv_file': str(csv_file)})
-                    continue
-                
-                time.sleep(1)
+                while retry_count < max_retries and not success:
+                    try:
+                        logger.info(f"  [{idx+1}/{total_urls}] Processing: {url}")
+                        if retry_count > 0:
+                            logger.info(f"    Retry attempt {retry_count}/{max_retries}")
+                        
+                        results = scrape_match_and_odds(url, handicaps, headless)
+                        all_results.extend(results)
+                        logger.info(f"    ✓ Collected {len(results)} odds entries")
+                        success = True
+                        
+                    except Exception as e:
+                        retry_count += 1
+                        error_msg = str(e)
+                        
+                        # Check for critical errors
+                        critical_error = any([
+                            "Stacktrace" in error_msg,
+                            "chrome not reachable" in error_msg.lower(),
+                            "session not created" in error_msg.lower(),
+                            "Message: \n" in error_msg,
+                            "chromedriver" in error_msg.lower()
+                        ])
+                        
+                        if retry_count < max_retries:
+                            logger.warning(f"    ⚠ Attempt {retry_count}/{max_retries} failed")
+                            logger.warning(f"      Error type: {'Critical' if critical_error else 'Regular'}")
+                            wait_time = 2 ** retry_count  # Exponential backoff
+                            logger.info(f"      Waiting {wait_time} seconds before retry...")
+                            time.sleep(wait_time)
+                        else:
+                            logger.error(f"    ✗ Failed after {max_retries} attempts")
+                            logger.error(f"      Final error: {error_msg[:300]}")
+                            failed_urls.append({
+                                'url': url, 
+                                'error': error_msg[:500], 
+                                'csv_file': str(csv_file),
+                                'attempts': retry_count
+                            })
+                    
+                    if success:
+                        time.sleep(1)  # Delay between successful requests
         else:
             # Parallel processing
             batch_size = (total_urls + num_workers - 1) // num_workers
