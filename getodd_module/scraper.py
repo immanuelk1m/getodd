@@ -6,12 +6,13 @@ import time
 from datetime import datetime
 from typing import List
 import pytz
+import os
+import shutil
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 from .config import (
@@ -36,8 +37,34 @@ def create_driver(headless: bool = True) -> webdriver.Chrome:
         options.add_argument("--headless")
     options.add_argument("--start-maximized")
     options.add_argument(f"user-agent={BROWSER_USER_AGENT}")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
     
-    service = Service(ChromeDriverManager().install())
+    # Chromium/Chrome 드라이버 자동 감지
+    chrome_driver_path = None
+    
+    # 1. chromium-chromedriver 확인 (Ubuntu/Debian)
+    if os.path.exists("/usr/bin/chromedriver"):
+        chrome_driver_path = "/usr/bin/chromedriver"
+    # 2. snap chromium-chromedriver 확인
+    elif os.path.exists("/snap/bin/chromium.chromedriver"):
+        chrome_driver_path = "/snap/bin/chromium.chromedriver"
+    # 3. 일반 chromedriver 확인
+    elif shutil.which("chromedriver"):
+        chrome_driver_path = shutil.which("chromedriver")
+    
+    if chrome_driver_path:
+        # 시스템에 설치된 chromedriver 사용
+        service = Service(chrome_driver_path)
+    else:
+        # webdriver-manager로 자동 다운로드 (폴백)
+        try:
+            from webdriver_manager.chrome import ChromeDriverManager
+            service = Service(ChromeDriverManager().install())
+        except Exception:
+            raise Exception("ChromeDriver not found. Please install chromium-chromedriver or google-chrome-stable")
+    
     driver = webdriver.Chrome(service=service, options=options)
     return driver
 
