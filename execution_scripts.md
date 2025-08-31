@@ -113,9 +113,12 @@ python -m getodd_module \
     --handicaps "+2.5,+3,+3.5"
 ```
 
+
+--- 12 / 13 진행중
+
 ## 12. 🇸🇪 Sweden (스웨덴)
 ```bash
-python -m getodd_module \
+xvfb-run -a python -m getodd_module \
     --input-dir match_urls_complete/by_league/sweden \
     --output-dir sweden_odds_output \
     --workers 5 \
@@ -124,10 +127,10 @@ python -m getodd_module \
 
 ## 13. 🇨🇭 Switzerland (스위스)
 ```bash
-python -m getodd_module \
+xvfb-run -a python3 -m getodd_module \
     --input-dir match_urls_complete/by_league/switzerland \
     --output-dir switzerland_odds_output \
-    --workers 5 \
+    --workers 3 \
     --handicaps "+2.5,+3,+3.5"
 ```
 

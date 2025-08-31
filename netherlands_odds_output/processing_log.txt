@@ -2490,3 +2490,60 @@ Failed URLs saved to netherlands_odds_output/failed_urls.json
 ==================================================
 2025-09-01 00:24:17,413 - INFO - Processing completed!
 2025-09-01 00:24:17,413 - INFO - ==================================================
+2025-09-01 00:40:08,605 - INFO - ==================================================
+2025-09-01 00:40:08,605 - INFO - Odds Scraper Started
+2025-09-01 00:40:08,606 - INFO - Input directory: match_urls_complete/by_league/norway
+2025-09-01 00:40:08,606 - INFO - Output directory: netherlands_odds_output
+2025-09-01 00:40:08,606 - INFO - Handicaps: +2.5,+3,+3.5
+2025-09-01 00:40:08,606 - INFO - Workers: 3
+2025-09-01 00:40:08,606 - INFO - ==================================================
+2025-09-01 00:40:08,606 - INFO - Found 5 CSV files
+2025-09-01 00:40:08,606 - INFO - 
+[1/5] Processing: match_urls_complete/by_league/norway/2020.csv
+2025-09-01 00:40:08,617 - INFO - Processing 2020.csv: 241 URLs found with 3 workers
+2025-09-01 00:41:51,888 - ERROR - Worker 2 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:41:51,889 - ERROR - Worker 1 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:41:53,489 - ERROR - Worker 0 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:41:53,492 - INFO - 
+[2/5] Processing: match_urls_complete/by_league/norway/2021.csv
+2025-09-01 00:41:53,505 - INFO - Processing 2021.csv: 241 URLs found with 3 workers
+2025-09-01 00:43:36,307 - ERROR - Worker 1 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:43:36,537 - ERROR - Worker 2 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:43:38,424 - ERROR - Worker 0 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:43:38,426 - INFO - 
+[3/5] Processing: match_urls_complete/by_league/norway/2022.csv
+2025-09-01 00:43:38,437 - INFO - Processing 2022.csv: 242 URLs found with 3 workers
+2025-09-01 00:45:21,431 - ERROR - Worker 1 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:45:24,000 - ERROR - Worker 0 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:48:21,205 - ERROR - Worker 2 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:48:21,207 - INFO - 
+[4/5] Processing: match_urls_complete/by_league/norway/2023.csv
+2025-09-01 00:48:21,219 - INFO - Processing 2023.csv: 242 URLs found with 3 workers
+2025-09-01 00:50:04,007 - ERROR - Worker 1 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:50:04,409 - ERROR - Worker 2 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:50:06,214 - ERROR - Worker 0 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:50:06,215 - INFO - 
+[5/5] Processing: match_urls_complete/by_league/norway/2024.csv
+2025-09-01 00:50:06,224 - INFO - Processing 2024.csv: 242 URLs found with 3 workers
+2025-09-01 00:51:49,295 - ERROR - Worker 2 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:51:51,326 - ERROR - Worker 0 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:54:49,491 - ERROR - Worker 1 failed: Message: Can not connect to the Service /Users/mac/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-arm64/chromedriver
+
+2025-09-01 00:54:49,496 - INFO - 
+==================================================
+2025-09-01 00:54:49,496 - INFO - Processing completed!
+2025-09-01 00:54:49,497 - INFO - ==================================================

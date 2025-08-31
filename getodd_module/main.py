@@ -16,6 +16,7 @@ from .utils import (
     save_checkpoint, save_failed_urls
 )
 from .processor import process_csv_file, save_results_to_csv
+from .scraper import cleanup_chromedriver_processes
 
 
 def parse_arguments():
@@ -58,6 +59,9 @@ def main():
     input_dir = Path(args.input_dir)
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
+    
+    # 시작 전 기존 프로세스 정리
+    cleanup_chromedriver_processes()
     
     # 로깅 설정
     logger = setup_logging(output_dir)
@@ -147,6 +151,11 @@ def main():
     logger.info("\n" + "="*50)
     logger.info("Processing completed!")
     logger.info("="*50)
+    
+    # 종료 시 프로세스 정리
+    logger.info("Cleaning up processes...")
+    cleanup_chromedriver_processes()
+    logger.info("Cleanup completed")
 
 
 if __name__ == "__main__":

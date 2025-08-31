@@ -28,20 +28,54 @@ def cleanup_chromedriver_processes():
     """Kill any stuck chromedriver processes"""
     if platform.system() == "Darwin":  # macOS
         try:
-            # Kill chromedriver processes
-            subprocess.run(["pkill", "-f", "chromedriver"], capture_output=True, timeout=5)
+            # Kill chromedriver processes - use -9 for force kill
+            subprocess.run(["pkill", "-9", "-f", "chromedriver"], capture_output=True, timeout=5)
             # Kill headless Chrome processes
-            subprocess.run(["pkill", "-f", "Chrome.*--headless"], capture_output=True, timeout=5)
+            subprocess.run(["pkill", "-9", "-f", "Chrome.*--headless"], capture_output=True, timeout=5)
             time.sleep(1)
         except:
             pass
     elif platform.system() == "Linux":
         try:
-            subprocess.run(["pkill", "-f", "chromedriver"], capture_output=True, timeout=5)
-            subprocess.run(["pkill", "-f", "chrome.*--headless"], capture_output=True, timeout=5)
+            subprocess.run(["pkill", "-9", "-f", "chromedriver"], capture_output=True, timeout=5)
+            subprocess.run(["pkill", "-9", "-f", "chrome.*--headless"], capture_output=True, timeout=5)
             time.sleep(1)
         except:
             pass
+
+
+def force_quit_driver(driver):
+    """
+    Force quit driver with multiple fallback methods
+    
+    Args:
+        driver: WebDriver instance to quit
+    """
+    if not driver:
+        return
+    
+    try:
+        # Try normal quit first
+        driver.quit()
+    except:
+        pass
+    
+    try:
+        # Try to kill the service process directly
+        if hasattr(driver, 'service') and hasattr(driver.service, 'process'):
+            if driver.service.process:
+                try:
+                    driver.service.process.terminate()
+                    time.sleep(0.5)
+                    if driver.service.process.poll() is None:
+                        driver.service.process.kill()
+                except:
+                    pass
+    except:
+        pass
+    
+    # Final cleanup at system level
+    cleanup_chromedriver_processes()
 
 
 def create_driver(headless: bool = True) -> webdriver.Chrome:
@@ -195,11 +229,19 @@ def scrape_match_and_odds_with_driver(driver: webdriver.Chrome, base_url: str,
 
     try:
         driver.get(target_url)
+        
+        # Wait for page to load
+        wait_for_page_ready(driver)
+        
         wait = WebDriverWait(driver, BROWSER_TIMEOUT)
         
         # 쿠키 동의 버튼 처리
         try:
-            wait.until(EC.element_to_be_clickable((By.ID, XPATH_SELECTORS['cookie_button']))).click()
+            cookie_btn = WebDriverWait(driver, 3).until(
+                EC.element_to_be_clickable((By.ID, XPATH_SELECTORS['cookie_button']))
+            )
+            cookie_btn.click()
+            time.sleep(0.5)
         except TimeoutException:
             pass
         
@@ -220,6 +262,29 @@ def scrape_match_and_odds_with_driver(driver: webdriver.Chrome, base_url: str,
     return all_odds_data
 
 
+def wait_for_page_ready(driver: webdriver.Chrome, timeout: int = 10) -> bool:
+    """
+    Wait for page to be fully loaded
+    
+    Args:
+        driver: WebDriver instance
+        timeout: Maximum wait time
+        
+    Returns:
+        True if page is ready, False otherwise
+    """
+    try:
+        # Wait for document ready state
+        WebDriverWait(driver, timeout).until(
+            lambda d: d.execute_script("return document.readyState") == "complete"
+        )
+        # Additional wait for dynamic content
+        time.sleep(1)
+        return True
+    except:
+        return False
+
+
 def extract_match_info(driver: webdriver.Chrome, wait: WebDriverWait) -> dict:
     """
     매치 기본 정보 추출
@@ -233,32 +298,80 @@ def extract_match_info(driver: webdriver.Chrome, wait: WebDriverWait) -> dict:
     """
     match_info = {}
     
-    # 팀 이름 추출
+    # Wait for page to be ready
+    wait_for_page_ready(driver)
+    
+    # 팀 이름 추출 (더 관대한 대기)
     try:
-        match_info['home_team'] = wait.until(
-            EC.visibility_of_element_located((By.XPATH, XPATH_SELECTORS['home_team']))
-        ).text
-        match_info['away_team'] = wait.until(
-            EC.visibility_of_element_located((By.XPATH, XPATH_SELECTORS['away_team']))
-        ).text
-    except TimeoutException:
+        # Try multiple selectors
+        home_team = None
+        away_team = None
+        
+        # Wait for any team element to be present first
+        try:
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//span[contains(@class, 'participant')]"))
+            )
+        except:
+            pass
+        
+        # Now try to get team names
+        try:
+            home_team = wait.until(
+                EC.presence_of_element_located((By.XPATH, XPATH_SELECTORS['home_team']))
+            ).text
+        except:
+            # Fallback selector
+            try:
+                home_team = driver.find_element(By.XPATH, "//div[@class='odds-header']//span[1]").text
+            except:
+                pass
+        
+        try:
+            away_team = wait.until(
+                EC.presence_of_element_located((By.XPATH, XPATH_SELECTORS['away_team']))
+            ).text
+        except:
+            # Fallback selector
+            try:
+                away_team = driver.find_element(By.XPATH, "//div[@class='odds-header']//span[2]").text
+            except:
+                pass
+        
+        match_info['home_team'] = home_team if home_team else 'N/A'
+        match_info['away_team'] = away_team if away_team else 'N/A'
+        
+    except Exception:
         match_info['home_team'] = 'N/A'
         match_info['away_team'] = 'N/A'
 
-    # 날짜 추출
+    # 날짜 추출 (더 관대한 대기)
     try:
-        time_container = wait.until(
-            EC.visibility_of_element_located((By.XPATH, XPATH_SELECTORS['time_container']))
-        )
-        date_parts_text = time_container.text.split('\n')
-        date_str = f"{date_parts_text[1].strip(',')} {date_parts_text[2]}"
+        time_container = None
+        # Try with shorter timeout first
+        try:
+            time_container = WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.XPATH, XPATH_SELECTORS['time_container']))
+            )
+        except:
+            # Try alternative selector
+            try:
+                time_container = driver.find_element(By.XPATH, "//div[contains(@class, 'date')]")
+            except:
+                pass
         
-        local_dt = datetime.strptime(date_str, DATE_PARSE_FORMAT)
-        korea_tz = pytz.timezone(KOREA_TZ)
-        korea_dt = korea_tz.localize(local_dt)
-        utc_dt = korea_dt.astimezone(pytz.utc)
-        match_info['match_date_utc'] = utc_dt.strftime(UTC_FORMAT)
-    except (NoSuchElementException, IndexError, ValueError):
+        if time_container:
+            date_parts_text = time_container.text.split('\n')
+            date_str = f"{date_parts_text[1].strip(',')} {date_parts_text[2]}"
+            
+            local_dt = datetime.strptime(date_str, DATE_PARSE_FORMAT)
+            korea_tz = pytz.timezone(KOREA_TZ)
+            korea_dt = korea_tz.localize(local_dt)
+            utc_dt = korea_dt.astimezone(pytz.utc)
+            match_info['match_date_utc'] = utc_dt.strftime(UTC_FORMAT)
+        else:
+            match_info['match_date_utc'] = 'N/A'
+    except (IndexError, ValueError, AttributeError):
         match_info['match_date_utc'] = 'N/A'
         
     return match_info

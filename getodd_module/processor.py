@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
 
 from .config import CSV_COLUMNS, CSV_ENCODING, WAIT_DELAY
-from .scraper import create_driver, scrape_match_and_odds_with_driver, scrape_match_and_odds, cleanup_chromedriver_processes, is_driver_alive
+from .scraper import create_driver, scrape_match_and_odds_with_driver, scrape_match_and_odds, cleanup_chromedriver_processes, is_driver_alive, force_quit_driver
 
 
 def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str], 
@@ -99,15 +99,10 @@ def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str
                         if critical_error or retry_count == 2:
                             try:
                                 logger.info(f"    Worker {worker_id}: Restarting browser...")
-                                try:
-                                    driver.quit()
-                                except:
-                                    pass  # Ignore errors during quit
                                 
+                                # Use force quit for better cleanup
+                                force_quit_driver(driver)
                                 driver = None  # Clear reference
-                                
-                                # Clean up any stuck processes
-                                cleanup_chromedriver_processes()
                                 time.sleep(2)
                                 
                                 # Create new driver
@@ -142,11 +137,9 @@ def process_url_batch(urls_batch: List[str], worker_id: int, handicaps: List[str
                         })
     finally:
         if driver:
-            try:
-                driver.quit()
-                logger.info(f"Worker {worker_id}: Browser closed")
-            except:
-                logger.warning(f"Worker {worker_id}: Browser quit failed, may have already crashed")
+            logger.info(f"Worker {worker_id}: Closing browser...")
+            force_quit_driver(driver)
+            logger.info(f"Worker {worker_id}: Browser closed")
     
     return results, failed_urls
 
